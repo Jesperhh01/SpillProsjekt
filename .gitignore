@@ -1,0 +1,18 @@
+# Unity specific
+**/[Ll]ibrary/
+**/[Tt]emp/
+**/[Oo]bj/
+**/[Bb]uild/
+**/[Mm]emoryCaptures/
+**/[Ll]ogs/
+**/[Dd]ebugLogs/
+
+# Visual Studio / Rider specific
+**/.vs/
+**/*.csproj
+**/*.sln
+**/*.userprefs
+
+# OS generated files
+**/.DS_Store
+**/Thumbs.db
