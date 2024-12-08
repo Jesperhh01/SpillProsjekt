@@ -29,11 +29,14 @@ public class Enemy : MonoBehaviour
 
             Vector2 knockback = (collision.transform.position - transform.position).normalized;
             PlayerMovement playerMovement = collision.gameObject.GetComponent<PlayerMovement>();
+            Player player = collision.gameObject.GetComponent<Player>();
+
 
             if (playerMovement != null)
             {
                 Debug.Log("Applying knockback to player...");
-                playerMovement.ApplyKnockback(knockback * 500f); // Bruker ApplyKnockback-metoden
+                playerMovement.ApplyKnockback(knockback * 10f); // Bruker ApplyKnockback-metoden
+                player.TakeDamage(damage); // Bruker TakeDamage-metoden
             }
             else
             {

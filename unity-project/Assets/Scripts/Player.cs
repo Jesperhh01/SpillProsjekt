@@ -1,4 +1,5 @@
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class Player : MonoBehaviour
 {
@@ -14,6 +15,7 @@ public class Player : MonoBehaviour
     public void TakeDamage(int damage)
     {
         currentHealth -= damage;
+        Debug.Log($"Player took {damage} damage! Remaining health: {currentHealth}");
         
         if (currentHealth <= 0)
         {
@@ -24,6 +26,7 @@ public class Player : MonoBehaviour
     void Die()
     {
         Debug.Log("Player died");
+        SceneManager.LoadScene("GameOver");
     }
 
 
