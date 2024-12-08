@@ -4,6 +4,7 @@ public class Enemy : MonoBehaviour
 {
     public float speed = 2f;
     public int damage = 10; // Skaden fienden gjør per treff
+    public int health = 100; 
     private Transform player;
 
     void Start()
