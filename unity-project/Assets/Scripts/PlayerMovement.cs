@@ -5,6 +5,9 @@ public class PlayerMovement : MonoBehaviour
 {
     Rigidbody2D rb;
     public float speed = 5f;
+    private Vector2 movement;
+    private bool isKnockedBack = false;
+
 
     private void Start()
     {
@@ -14,15 +17,39 @@ public class PlayerMovement : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        HandleMovement();
+            HandleMovement();
+    }
+
+    public void FixedUpdate()
+    {
+        if (!isKnockedBack)
+        {
+            rb.linearVelocity = movement * speed;
+        }    
     }
 
     void HandleMovement()
     {
+        // Get input in Update
         float horizontal = Input.GetAxis("Horizontal");
         float vertical = Input.GetAxis("Vertical");
-        Vector2 movement = new Vector2(horizontal, vertical);
-        rb.MovePosition(rb.position + movement * speed * Time.fixedDeltaTime);    }
+        movement = new Vector2(horizontal, vertical).normalized;
+    }
+
+    public void ApplyKnockback(Vector2 knockbackForce)
+    {
+        isKnockedBack = true;
+        rb.AddForce(knockbackForce, ForceMode2D.Impulse);
+        Invoke(nameof(EndKnockback), 0.2f); // Slutt knockback etter 0.2 sekunder
+    }
+
+    void EndKnockback()
+    {
+        isKnockedBack = false;
+    }
+    
+    
+    
 }
     
     
